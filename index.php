@@ -77,7 +77,7 @@
             <div  class="jumbotron col-md-3">
 
               <h3 class="page-header">Please Sign In</h3>
-                  <form action="login.php" method="post" name="frmlogin">
+                  <form action="index.php" method="post" name="frmlogin">
                     <input type="text" name="txtemail" id="txtemail" class="form-control" placeholder="Email"><br>
                     <div style="color:#FF0000" id="emailfail"></div>
                     <input type="password" name="txtpass" id="txtpass" class="form-control" placeholder="Password"><br>
