@@ -3,40 +3,40 @@
 	{
 		public function insert($userDTO)
 		{
-			$con = mysql_connect("mysql.hostinger.vn","u852828225_root","123456");
-			mysql_select_db("u852828225_local");
+			$con = mysqli_connect("mysql.hostinger.vn","u852828225_root","123456");
+			mysqli_select_db("u852828225_local");
 			$strQuery = "insert into user(user,name,email,pass) values ('$userDTO->user','$userDTO->name','$userDTO->email','$userDTO->pass')";
-			mysql_query($strQuery);
-			mysql_close($con);
+			mysqli_query($strQuery);
+			mysqli_close($con);
 		}
 
 		public function update($userDTO)
 		{
-			$con = mysql_connect("mysql.hostinger.vn","u852828225_root","123456");
-			mysql_select_db("u852828225_local");
+			$con = mysqli_connect("mysql.hostinger.vn","u852828225_root","123456");
+			mysqli_select_db("u852828225_local");
 			$strQuery = "update user set user='{$userDTO->user}', name='{$userDTO->name}',email='{$userDTO->email}',pass='{$userDTO->pass}' where ma={$userDTO->ma}";
-			mysql_query($strQuery);
-			mysql_close($con);
+			mysqli_query($strQuery);
+			mysqli_close($con);
 
 		}
 
 		public function deleteById($ma)
 		{
-			$con = mysql_connect("mysql.hostinger.vn","u852828225_root","123456");
-			mysql_selectdb("u852828225_local");
+			$con = mysqli_connect("mysql.hostinger.vn","u852828225_root","123456");
+			mysqli_selectdb("u852828225_local");
 			$strQuery = "delete from user where ma=$ma";
-			mysql_query($strQuery);
-			mysql_close($con);
+			mysqli_query($strQuery);
+			mysqli_close($con);
 		}
 
 		public function getAll()
 		{
-			$con = mysql_connect("mysql.hostinger.vn","u852828225_root","123456");
-			mysql_selectdb("u852828225_local");
+			$con = mysqli_connect("mysql.hostinger.vn","u852828225_root","123456");
+			mysqli_selectdb("u852828225_local");
 			$strQuery = "select * from user";
-			$result = mysql_query($strQuery);
+			$result = mysqli_query($strQuery);
 			$arrUser = array();
-			while($row = mysql_fetch_array($result))
+			while($row = mysqli_fetch_array($result))
 			{
 				$us = new userDTO();
 				$us->ma =$row["ma"];
@@ -47,26 +47,26 @@
 			//Thêm đối tượng $us vào mảng $arrUs
 				$arrUser[] = $us;	
 			}
-			mysql_close($con);
+			mysqli_close($con);
 			return $arrUser;
 
 		}
 
 		public function getById($ma)
 		{
-			$con = mysql_connect("mysql.hostinger.vn","u852828225_root","123456");
-			mysql_select_db("u852828225_local");
+			$con = mysqli_connect("mysql.hostinger.vn","u852828225_root","123456");
+			mysqli_select_db("u852828225_local");
 			$strQuery = "select *from user where ma=$ma";
-			$result =mysql_query($strQuery);
+			$result =mysqli_query($strQuery);
 			$us = new userDTO();
-			if($row=mysql_fetch_array($result)){
+			if($row=mysqli_fetch_array($result)){
 				$us->ma = $row["ma"];
 				$us->user = $row["user"];
 				$us->name = $row["name"];
 				$us->email = $row["email"];
 				$us->pass = $row["pass"];
 			}
-			mysql_close($con);
+			mysqli_close($con);
 			return $us;
 		}
 

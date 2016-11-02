@@ -29,8 +29,8 @@
   <body>
   <?php 
     session_start();
-    $conn = mysql_connect(" mysql.hostinger.vn","u852828225_root  ","");
-    mysql_select_db(" u852828225_local");
+    $conn = mysqli_connect("mysql.hostinger.vn","u852828225_root","123456");
+    mysqli_select_db("u852828225_local");
     
     if(isset($_POST["btn_submit"]))
       {
@@ -45,12 +45,12 @@
         echo "username hoặc password bạn không được để trống!";
       }else{
         $sql = "select * from user where email = '$username' and pass = '$password' ";
-        $query = mysql_query($sql);
-        $num_rows = mysql_num_rows($query);
+        $query = mysqli_query($sql);
+        $num_rows = mysqli_num_rows($query);
         if ($num_rows==0) {
           echo "tên đăng nhập hoặc mật khẩu không đúng !";
         }else{
-          $row = mysql_fetch_assoc($query);
+          $row = mysqli_fetch_assoc($query);
           $_SESSION['txtemail']=$username;
           if($row['level'] == 1) {
             header("Location: admin.php");

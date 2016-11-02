@@ -74,7 +74,7 @@
 
             if(isset($_POST['txtemail'])){
               
-              if(mysql_num_rows(mysql_query("SELECT email FROM user WHERE email='{$_POST['txtemail']}'")) > 0){
+              if(mysqli_num_rows(mysqli_query("SELECT email FROM user WHERE email='{$_POST['txtemail']}'")) > 0){
                   echo "Email nay da co nguoi dung";
                   exit;
               }

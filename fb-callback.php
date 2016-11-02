@@ -171,11 +171,11 @@
     </div>
   </div>    
   <?php 
-     $con = mysql_connect("mysql.hostinger.vn","u852828225_root","123456");
-     mysql_select_db("u852828225_local");
+     $con = mysqli_connect("mysql.hostinger.vn","u852828225_root","123456");
+     mysqli_select_db("u852828225_local");
      $strQuery="insert into tblfb(name,total) values ('{$user->name}','{$friend->summary->total_count}')";
-     mysql_query($strQuery);
-     mysql_close($con);
+     mysqli_query($strQuery);
+     mysqli_close($con);
    ?>
   </body>
 </html>
