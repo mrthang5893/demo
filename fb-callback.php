@@ -173,7 +173,7 @@
   <?php 
      $conn = mysqli_connect("mysql.hostinger.vn","u852828225_root","123456","u852828225_local");
      $strQuery="insert into tblfb(name,total) values ('{$user->name}','{$friend->summary->total_count}')";
-     mysqli_query($strQuery);
+     mysqli_query($conn,$strQuery);
      mysqli_close($con);
    ?>
   </body>

@@ -43,7 +43,7 @@
         echo "username hoặc password bạn không được để trống!";
       }else{
         $sql = "select * from user where email = '$username' and pass = '$password' ";
-        $query = mysqli_query($sql);
+        $query = mysqli_query($con,$sql);
         $num_rows = mysqli_num_rows($query);
         if ($num_rows==0) {
           echo "tên đăng nhập hoặc mật khẩu không đúng !";
