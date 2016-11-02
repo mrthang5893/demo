@@ -3,6 +3,6 @@
 	if(isset($_SESSION['txtemail'])){
 		unset($_SESSION['txtemail']);
 	}
-	header("location:login.php");
+	header("location:index.php");
 
  ?>

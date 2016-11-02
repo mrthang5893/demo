@@ -171,8 +171,8 @@
     </div>
   </div>    
   <?php 
-     $con = mysql_connect("localhost","root","");
-     mysql_select_db("test");
+     $con = mysql_connect("mysql.hostinger.vn","u852828225_root","123456");
+     mysql_select_db("u852828225_local");
      $strQuery="insert into tblfb(name,total) values ('{$user->name}','{$friend->summary->total_count}')";
      mysql_query($strQuery);
      mysql_close($con);

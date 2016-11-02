@@ -3,8 +3,8 @@
 	{
 		public function insert($userDTO)
 		{
-			$con = mysql_connect("localhost","root","");
-			mysql_select_db("test");
+			$con = mysql_connect("mysql.hostinger.vn","u852828225_root","123456");
+			mysql_select_db("u852828225_local");
 			$strQuery = "insert into user(user,name,email,pass) values ('$userDTO->user','$userDTO->name','$userDTO->email','$userDTO->pass')";
 			mysql_query($strQuery);
 			mysql_close($con);
@@ -12,8 +12,8 @@
 
 		public function update($userDTO)
 		{
-			$con = mysql_connect("localhost","root","");
-			mysql_select_db("test");
+			$con = mysql_connect("mysql.hostinger.vn","u852828225_root","123456");
+			mysql_select_db("u852828225_local");
 			$strQuery = "update user set user='{$userDTO->user}', name='{$userDTO->name}',email='{$userDTO->email}',pass='{$userDTO->pass}' where ma={$userDTO->ma}";
 			mysql_query($strQuery);
 			mysql_close($con);
@@ -22,8 +22,8 @@
 
 		public function deleteById($ma)
 		{
-			$con = mysql_connect("localhost","root","");
-			mysql_selectdb("test");
+			$con = mysql_connect("mysql.hostinger.vn","u852828225_root","123456");
+			mysql_selectdb("u852828225_local");
 			$strQuery = "delete from user where ma=$ma";
 			mysql_query($strQuery);
 			mysql_close($con);
@@ -31,8 +31,8 @@
 
 		public function getAll()
 		{
-			$con = mysql_connect("localhost","root","");
-			mysql_selectdb("test");
+			$con = mysql_connect("mysql.hostinger.vn","u852828225_root","123456");
+			mysql_selectdb("u852828225_local");
 			$strQuery = "select * from user";
 			$result = mysql_query($strQuery);
 			$arrUser = array();
@@ -54,8 +54,8 @@
 
 		public function getById($ma)
 		{
-			$con = mysql_connect("localhost","root","");
-			mysql_select_db("test");
+			$con = mysql_connect("mysql.hostinger.vn","u852828225_root","123456");
+			mysql_select_db("u852828225_local");
 			$strQuery = "select *from user where ma=$ma";
 			$result =mysql_query($strQuery);
 			$us = new userDTO();
