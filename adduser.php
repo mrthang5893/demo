@@ -42,7 +42,7 @@
     else{
       echo 'Bạn chưa đăng nhập';
     }
-   ?>
+   ?> 
     <div class="row">
        <div  class="col-md-12">
             <h2 class="page-header text-center">Influencer Marketing System</h2>
@@ -68,25 +68,38 @@
                             </ul>
             </div>
 
-        <div class="jumbotron col-md-8">
+        <div class="jumbotron col-md-8">  
           <p class="text-center text-success"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>Add User</p>
+          <?php 
+
+            if(isset($_POST['txtemail'])){
+              
+              if(mysql_num_rows(mysql_query("SELECT email FROM user WHERE email='{$_POST['txtemail']}'")) > 0){
+                  echo "Email nay da co nguoi dung";
+                  exit;
+              }
+
+
+             }
+           ?>
             <form action="adduserxuly.php" method="post">
               <b>UserID</b><br>
-              <input type="text" name="txtuser" value="" class="form-control" placeholder="UserID">
+              <input type="text" name="txtuser" value="" class="form-control" placeholder="UserID" required="">
 
               <b>Fullname</b><br>
-              <input type="text" name="txtname" value="" class="form-control" placeholder="Fullname">
+              <input type="text" name="txtname" value="" class="form-control" placeholder="Fullname" required="">
 
               <b>Email</b><br>
-              <input type="text" name="txtemail" value="" class="form-control" placeholder="Email">
+              <input type="text" name="txtemail" value="" class="form-control" placeholder="Email" required="">
 
               <b>Password</b><br>
-              <input type="password" name="txtpass" value="" class="form-control" placeholder="Password">
+              <input type="password" name="txtpass" value="" class="form-control" placeholder="Password" required="">
 
               <b>Re-Password</b><br>
-              <input type="password" name="" value="" class="form-control" placeholder="Re-Password"><br>
+              <input type="password" name="" value="" class="form-control" placeholder="Re-Password" required=""><br>
 
-              <input type="submit" name="" class="btn btn-success form-control" value="Save">
+              <input type="submit" name="btnsubmit" class="btn btn-success form-control" value="Save">
+              
             </form>
     
         </div>

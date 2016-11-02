@@ -1,5 +1,43 @@
+<?php
+    session_start();
+    $app_id = "185583881895274";
+    $app_secret = "2efd77762a3a5c8df72491d29e716136";
+    $redirect_uri = urlencode("http://localhost:8080/demo/fb-callback.php");
+    // Get code value
+    $code = $_GET['code'];
+    // Get access token info
+    $facebook_access_token_uri = "https://graph.facebook.com/oauth/access_token?client_id=$app_id&redirect_uri=$redirect_uri&client_secret=$app_secret&code=$code";
+    $ch = curl_init();
+    curl_setopt($ch, CURLOPT_URL, $facebook_access_token_uri);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
+    $response = curl_exec($ch);
+    curl_close($ch);
+    // Get access token
+    $access_token = str_replace('access_token=', '', explode("&", $response)[0]);
+    // Get user infomation
+    $ch = curl_init();
+    curl_setopt($ch, CURLOPT_URL, "https://graph.facebook.com/me?access_token=$access_token");
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
+    $response = curl_exec($ch);
+    curl_close($ch);
+    $user = json_decode($response);
+
+    $ch = curl_init();
+    curl_setopt($ch, CURLOPT_URL, "https://graph.facebook.com/me/friends?access_token=$access_token");
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
+    $response = curl_exec($ch);
+    curl_close($ch);
+    $friend =json_decode($response);
+    // Log user in
+    $_SESSION['user_login'] = true;
+    //echo "Wellcome: ". $user->name.":".$user->id."!";
+    //echo "Total Friend:".$friend->summary->total_count. "";
+?>
 <?php 
-  session_start();
+  //session_start();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -23,55 +61,6 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
   </head>
   <body>
-  <script>
-    function statusChangeCallback(response){
-      console.log('statusChangeCallback');
-      console.log(response);
-      if(response.status ==='connected'){
-        testAPI();
-      }else if(response.status ==='not_authorized'){
-        document.getElementById('status').innerHTML='Please log'+'into this app';
-      }else{
-        document.getElementById('status').innerHTML='Please log'+'into Facebook';
-      }
-    }
-    function checkLoginState(){
-      FB.getLoginStatus(function(response){
-        statusChangeCallback(respnse);
-      });
-    }
-    window.fbAsyncInit = function(){
-      FB.init({
-        appId : '185583881895274',
-        cookie: true,
-        xfbml : true,
-        version : 'v2.8'
-      });
-      FB.getLoginStatus(function(response){
-        statusChangeCallback(response);
-      });
-    };
-    (function(d,s,id){
-      var js, fjs = d.getElementsByTagName(s)[0];
-      if(d.getElementById(s)) return;
-      js = d.createElement(s); js.id = id;
-      js.src = "//connect.facebook.net/en_US/sdk.js";
-      fjs.parentNode.insertBefore(js,fjs);
-    }(document,'script','facebook-jssdk'));
-
-    function testAPI(){
-      console.log('Welcome! Fetching your information....');
-      FB.api('/me',function(response){
-        console.log('Successful login for :' +response.name);
-        document.getElementById('status').innerHTML = 'Thank for logging in ,' + response.name+'!';
-      });
-    }
-
-  </script>
-  
-  
-    
-
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
@@ -111,16 +100,16 @@
               </thead>
               <tbody>
                 <tr>
-                  <td>Facebook:</td>
+                  <td>Facebook: <b><?php echo $user->name; ?></b></td>
                   
                 </tr>
                 <tr>
-                  <td>Total Friend:</td>
+                  <td>Total Friend: <b><?php echo $friend->summary->total_count; ?></b></td>
               
                 </tr>
                 <tr>
                   <td>
-                    <a class="btn btn-primary form-control" href="https://www.facebook.com/dialog/oauth?client_id=185583881895274&scope=user_friends&redirect_uri=http://localhost:8080/demo/fb-callback.php">Login with Facebook</a>
+                    
                   </td>
 
                 </tr>
@@ -180,6 +169,13 @@
 
         </div>
     </div>
-  </div>
+  </div>    
+  <?php 
+     $con = mysql_connect("localhost","root","");
+     mysql_select_db("test");
+     $strQuery="insert into tblfb(name,total) values ('{$user->name}','{$friend->summary->total_count}')";
+     mysql_query($strQuery);
+     mysql_close($con);
+   ?>
   </body>
 </html>

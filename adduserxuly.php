@@ -10,5 +10,6 @@
 //Thêm vào Database
 	$objuserDAO = new userDAO();
 	$objuserDAO->insert($objuserDTO);
+
 	header("Location:listuser.php");	
  ?>
