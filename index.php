@@ -29,9 +29,7 @@
   <body>
   <?php 
     session_start();
-    $conn = mysqli_connect("mysql.hostinger.vn","u852828225_root","123456");
-    mysqli_select_db("u852828225_local", $conn);
-    
+    $conn = mysqli_connect("mysql.hostinger.vn","u852828225_root","123456","u852828225_local");  
     if(isset($_POST["btn_submit"]))
       {
 

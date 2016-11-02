@@ -3,8 +3,7 @@
 	{
 		public function insert($userDTO)
 		{
-			$con = mysqli_connect("mysql.hostinger.vn","u852828225_root","123456");
-			mysqli_select_db("u852828225_local", $conn);
+			$conn = mysqli_connect("mysql.hostinger.vn","u852828225_root","123456","u852828225_local");
 			$strQuery = "insert into user(user,name,email,pass) values ('$userDTO->user','$userDTO->name','$userDTO->email','$userDTO->pass')";
 			mysqli_query($strQuery);
 			mysqli_close($con);
@@ -12,8 +11,7 @@
 
 		public function update($userDTO)
 		{
-			$con = mysqli_connect("mysql.hostinger.vn","u852828225_root","123456");
-			mysqli_select_db("u852828225_local", $conn);
+			$conn = mysqli_connect("mysql.hostinger.vn","u852828225_root","123456","u852828225_local");
 			$strQuery = "update user set user='{$userDTO->user}', name='{$userDTO->name}',email='{$userDTO->email}',pass='{$userDTO->pass}' where ma={$userDTO->ma}";
 			mysqli_query($strQuery);
 			mysqli_close($con);
@@ -22,8 +20,7 @@
 
 		public function deleteById($ma)
 		{
-			$con = mysqli_connect("mysql.hostinger.vn","u852828225_root","123456");
-			mysqli_select_db("u852828225_local", $conn);
+			$conn = mysqli_connect("mysql.hostinger.vn","u852828225_root","123456","u852828225_local");
 			$strQuery = "delete from user where ma=$ma";
 			mysqli_query($strQuery);
 			mysqli_close($con);
@@ -31,8 +28,7 @@
 
 		public function getAll()
 		{
-			$con = mysqli_connect("mysql.hostinger.vn","u852828225_root","123456");
-			mysqli_select_db("u852828225_local", $conn);
+			$conn = mysqli_connect("mysql.hostinger.vn","u852828225_root","123456","u852828225_local");
 			$strQuery = "select * from user";
 			$result = mysqli_query($strQuery);
 			$arrUser = array();
@@ -54,8 +50,7 @@
 
 		public function getById($ma)
 		{
-			$con = mysqli_connect("mysql.hostinger.vn","u852828225_root","123456");
-			mysqli_select_db("u852828225_local", $conn);
+			$conn = mysqli_connect("mysql.hostinger.vn","u852828225_root","123456","u852828225_local");
 			$strQuery = "select *from user where ma=$ma";
 			$result =mysqli_query($strQuery);
 			$us = new userDTO();
