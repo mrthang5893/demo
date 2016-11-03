@@ -1,6 +1,4 @@
-<?php 
-  session_start();
- ?>
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -8,10 +6,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>Add User</title>
+    <title>List User</title>
 
     <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
+
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
@@ -23,18 +22,11 @@
   </head>
   <body>
   
-  <?php 
-    require_once("DAO/userDAO.php");
-    require_once("DTO/userDTO.php");
-    
-   ?>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="js/bootstrap.min.js"></script>
-
     <div class="container">
-    
     <div class="row">
        <div  class="col-lg-12">
             <h1 class="text-center"><b>Influencer Marketing System</b></h1>
@@ -75,46 +67,42 @@
                             
           </ul>
         </div>
+        <?php 
+          $conn = mysqli_connect("localhost","root","","test");
+          $strQuery="select * from tblfb";
+          $result = mysqli_query($conn,$strQuery);
+         ?>
 
-        <div class="col-lg-8">  
-          <p class="text-center text-success"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>Add User</p>
-          <?php 
-
-            if(isset($_POST['txtemail'])){
-              
-              if(mysqli_num_rows(mysqli_query("SELECT email FROM user WHERE email='{$_POST['txtemail']}'")) > 0){
-                  echo "Email nay da co nguoi dung";
-                  exit;
-              }
-
-
-             }
-           ?>
-            <form action="adduserxuly.php" method="post">
-              <b>UserID</b><br>
-              <input type="text" name="txtuser" value="" class="form-control" placeholder="UserID" required="">
-
-              <b>Fullname</b><br>
-              <input type="text" name="txtname" value="" class="form-control" placeholder="Fullname" required="">
-
-              <b>Email</b><br>
-              <input type="text" name="txtemail" value="" class="form-control" placeholder="Email" required="">
-
-              <b>Password</b><br>
-              <input type="password" name="txtpass" value="" class="form-control" placeholder="Password" required="">
-
-              <b>Re-Password</b><br>
-              <input type="password" name="" value="" class="form-control" placeholder="Re-Password" required=""><br>
-
-              <input type="submit" name="btnsubmit" class="btn btn-success form-control" value="Save">
-              
-            </form>
-    
+        <div class="col-lg-8">
+          <h3 class="text-center page-header"><b>List Influencer</b></h3>
+          <table class="table table-bordered">
+                <tr>
+                  <td><b>#</b></td>
+                  <td><b>FB_Name</b></td>
+                  <td><b>Total_Friend</b></td>
+                  <td><b>Email</b></td>
+                </tr>
+                <?php 
+                  while($row = mysqli_fetch_array($result))
+                  {
+                 ?>
+                 <tr>
+                  <td><?php echo $row["id"]; ?></td>
+                  <td><?php echo $row["name"]; ?></td>
+                  <td><?php echo $row["total"]; ?></td>
+                  <td></td>
+                </tr>
+                <?php 
+                  }
+                 ?>
+                
+          </table>
         </div>
-
-        
-
+    </div>
   </div>
-
+  <?php 
+    mysqli_close($conn);
+   ?>
   </body>
+}
 </html>

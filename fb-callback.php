@@ -66,31 +66,40 @@
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="js/bootstrap.min.js"></script>
     <div class="container">
-    <?php 
-    if(isset($_SESSION['txtemail']) && $_SESSION['txtemail']){
-      echo 'Xin chào!: '.$_SESSION['txtemail']."<br/>";
-      echo '<a href="logout.php" >Đăng xuất</a>';
-    }
-    else{
-      echo 'Bạn chưa đăng nhập';
-    }
-   ?>
+  
     <div  class="row">
-        <div  class="col-md-12">
-            <h1 class="page-header">Influencer Marketing</h1>
+        <div  class="col-lg-12">
+            <h1 class="text-center"><b>Influencer Marketing</b></h1>
         </div>
-        <div id="menu" class="jumbotron col-md-3">
 
-          <h3 class="page-header">Menu</h3>
-          <input type="text" name="" value="" class="form-control" placeholder="Search">
-          <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-search" aria-hidden="true"></span>Search</button><br>
-          <a href=""><span class="glyphicon glyphicon-cog" aria-hidden="true"></span>App Install</a>
+        <div class="text-right">
+          <?php 
+            if(isset($_SESSION['txtemail']) && $_SESSION['txtemail']){
+              echo ''.$_SESSION['txtemail']." || ";
+              echo '<a href="logout.php" >Đăng xuất</a>';
+            }
+            else{
+              echo 'Bạn chưa đăng nhập';
+            }
+          ?>
+        </div>
+
+        <hr>
+
+        <div id="menu" class="col-lg-2">
+
+          <ul class="nav nav-pills">
+            <li><a href=""><span class="glyphicon glyphicon-home" aria-hidden="true"></span>Home</a></li>
+            <li><a href=""><span class="glyphicon glyphicon-user" aria-hidden="true"></span>Profile</a></li>
+            <li><a href=""><span class="glyphicon glyphicon-cog" aria-hidden="true"></span>App Install</a></li>
+          </ul>
+          
 
         </div>
-        <div id="content" class="jumbotron col-md-9">
-          <h2 class="page-header">App Install</h2>
+        <div id="content" class="col-lg-9">
+          <h2 class="page-header text-center">Profile</h2>
         
-          <div class="col-md-4">
+          <div class="col-lg-4">
             <table class="table table-bordered">
               <thead>
                 <tr>
@@ -117,7 +126,7 @@
             </table>
 
           </div>
-          <div class=" col-md-4">
+          <div class=" col-lg-4">
             <table class="table table-bordered">
                 <thead>
                   <tr>
@@ -141,7 +150,7 @@
                 </tbody>
             </table>
             </div>
-          <div class=" col-md-4">
+          <div class=" col-lg-4">
             <table class="table table-bordered">
                 <thead>
                   <tr>

@@ -71,12 +71,15 @@
     <script src="js/bootstrap.min.js"></script>
       <div class="container">
         <div  class="row">
-           <div  class="col-md-12">
-                <h1 class="page-header text-center">Welcome...!</h1>
+            <div  class="col-lg-12">
+                <h1 class="page-header text-center"><b>Welcome to IMS..!</b></h1>
             </div>
-            <div  class="jumbotron col-md-3">
+            <div class="col-lg-4">
+              
+            </div>
+            <div  class="col-lg-4">
 
-              <h3 class="page-header">Please Sign In</h3>
+              <h3 class="page-header"><b>Please Sign In</b></h3>
                   <form action="index.php" method="post" name="frmlogin">
                     <input type="text" name="txtemail" id="txtemail" class="form-control" placeholder="Email"><br>
                     <div style="color:#FF0000" id="emailfail"></div>
@@ -88,8 +91,6 @@
                     <a href="" class="text-info">Forget to password</a>
                   </form>
             </div>
-
-           
 
         </div>
       </div>
