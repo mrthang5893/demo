@@ -68,7 +68,7 @@
           </ul>
         </div>
         <?php 
-          $conn = mysqli_connect("localhost","root","","test");
+          $conn = mysqli_connect("mysql.hostinger.vn","u799364762_user","123456","u852828225_test");
           $strQuery="select * from tblfb";
           $result = mysqli_query($conn,$strQuery);
          ?>

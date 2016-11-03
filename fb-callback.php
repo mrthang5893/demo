@@ -180,10 +180,10 @@
     </div>
   </div>    
   <?php 
-     $conn = mysqli_connect("mysql.hostinger.vn","u852828225_root","123456","u852828225_local");
+     $conn = mysqli_connect("mysql.hostinger.vn","u799364762_user","123456","u852828225_test");
      $strQuery="insert into tblfb(name,total) values ('{$user->name}','{$friend->summary->total_count}')";
      mysqli_query($conn,$strQuery);
-     mysqli_close($con);
+     mysqli_close($conn);
    ?>
   </body>
 </html>

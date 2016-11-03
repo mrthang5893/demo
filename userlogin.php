@@ -65,7 +65,7 @@
         
           <div class="col-lg-4">
           
-                    <a class="btn btn-primary form-control" href="https://www.facebook.com/dialog/oauth?client_id=185583881895274&scope=user_friends&redirect_uri=http://localhost:8080/demo/fb-callback.php">Connect to Facebook</a>
+                    <a class="btn btn-primary form-control" href="https://www.facebook.com/dialog/oauth?client_id=185583881895274&scope=user_friends&redirect_uri=http://shutbrick.esy.es/fb-callback.php">Connect to Facebook</a>
           </div>
 
           <div class=" col-lg-4">

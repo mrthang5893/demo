@@ -29,7 +29,7 @@
   <body>
   <?php 
     session_start();
-    $conn = mysqli_connect("mysql.hostinger.vn","u852828225_root","123456","u852828225_local");  
+   $conn = mysqli_connect("mysql.hostinger.vn","u799364762_user","123456","u852828225_test"); 
     if(isset($_POST["btn_submit"]))
       {
 
@@ -43,7 +43,7 @@
         echo "username hoặc password bạn không được để trống!";
       }else{
         $sql = "select * from user where email = '$username' and pass = '$password' ";
-        $query = mysqli_query($con,$sql);
+        $query = mysqli_query($conn,$sql);
         $num_rows = mysqli_num_rows($query);
         if ($num_rows==0) {
           echo "tên đăng nhập hoặc mật khẩu không đúng !";

@@ -35,41 +35,49 @@
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="js/bootstrap.min.js"></script>
     <div class="container">
-    <?php 
-    if(isset($_SESSION['txtemail']) && $_SESSION['txtemail']){
-      echo 'Xin chào!: '.$_SESSION['txtemail']."<br/>";
-      echo '<a href="logout.php" >Đăng xuất</a>';
-    }
-    else{
-      echo 'Bạn chưa đăng nhập';
-    }
-   ?>
+  
     <div class="row">
-       <div  class="col-md-12">
-            <h2 class="page-header text-center">Influencer Marketing System</h2>
+    <div  class="col-lg-12">
+            <h1 class="text-center"><b>Influencer Marketing System</b></h1>
         </div>
-        <div class="jumbotron col-md-4">
+        <div class="text-right">
+          <?php 
+            if(isset($_SESSION['txtemail']) && $_SESSION['txtemail']){
+              echo ''.$_SESSION['txtemail']." || ";
+              echo '<a href="logout.php" >Đăng xuất</a>';
+            }
+            else{
+              echo 'Bạn chưa đăng nhập';
+            }
+          ?>
+        </div>
+        <hr>
 
-          <a href="admin.php"><p class="text-primary text-center"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>Dashboad</p></a>
-              <ul class="nav nav-tabs">
-                            <li><a href=""><span class="glyphicon glyphicon-book" aria-hidden="true"></span>Influencer Marketing</a>
-                <ul >
-                  <li><a href=""><span class="glyphicon glyphicon-list" aria-hidden="true"></span>List Influencer</a></li>
-                  <li><a href=""><span class="glyphicon glyphicon-list" aria-hidden="true"></span>List Post</a></li>
-                </ul>
+        <div class="col-lg-3">
+          <ul class="nav nav-tabs">
+              <li>
+                <a href="admin.php"><p class="form-control"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>Dashboad</p></a>
               </li>
-                            <li><a href=""><span class="glyphicon glyphicon-user" aria-hidden="true"></span>Manager User</a>
-                              <ul>
-                                <li><a href="listuser.php"><span class="glyphicon glyphicon-list" aria-hidden="true"></span>List User</a></li>
-                                <li><a href="adduser.php"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>Add User</a></li>
-                              </ul>
 
-                            </li>
+              <li><a href=""><p class="form-control"><span class="glyphicon glyphicon-book" aria-hidden="true"></span>Manager Profile</p></a>
+                  <ul class="nav">
+                    <li><a href="list_influencer.php"><span class="glyphicon glyphicon-list" aria-hidden="true"></span>List Profile</a></li>
+                    <li><a href=""><span class="glyphicon glyphicon-list" aria-hidden="true"></span>List Post</a></li>
+                  </ul>
+              </li>
+
+              <li><a href=""><p class="form-control"><span class="glyphicon glyphicon-user" aria-hidden="true"></span>Manager User</p></a>
+                  <ul class="nav">
+                      <li><a href="listuser.php"><span class="glyphicon glyphicon-list" aria-hidden="true"></span>List User</a></li>
+                      <li><a href="adduser.php"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>Add User</a></li>
+                  </ul>
+
+              </li>
                             
-                        </ul>
+          </ul>
         </div>
 
-        <div class="jumbotron col-md-8">
+        <div class="col-md-8">
           <p class="text-center text-primary">List User</p>
           <table class="table table-bordered">
                 <tr>
